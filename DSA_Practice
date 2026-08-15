@@ -95,3 +95,95 @@ Delete:
 12
 13
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Dynamic arrays code:
+
+Program:
+class Main {
+    int size;
+    int capacity;
+    int [] arr;
+
+    Main(int capacity){
+        this.capacity=capacity;
+        arr=new int[capacity];
+        size=0;
+    }
+
+    public void insert(int index,int element){
+        if(index<0||index>size){
+            System.out.println("this is an invalid index");
+            return;
+        }
+        if(size>=capacity){
+            resize();
+        }
+        for(int i=size;i>index;i--){
+            arr[i]=arr[i-1];
+        }
+        arr[index]=element;
+        size++;
+    }
+
+    public void get(int index){
+        System.out.print(arr[index]);
+    }
+
+    public void set(int index,int element){
+        arr[index]=element;
+    }
+
+    public void search(int element){
+        for(int i=0;i<size;i++){
+            if(arr[i]==element){
+                System.out.println("index: "+i);
+                break;
+            }
+        }
+    }
+
+    public void delete(int index){
+        if(index<0||index>=size){
+            System.out.println("this is an invalid index");
+            return;
+        }
+        for(int i = index ; i<size-1;i++){
+            arr[i]=arr[i+1];
+        }
+        size--;
+    }
+
+    public void resize(){
+        int newcapacity = capacity * 2;
+        int [] newarr = new int[newcapacity];
+        for(int i=0;i<size;i++){
+            newarr[i] = arr[i]; 
+        }
+        arr=newarr;
+        capacity = newcapacity;
+    }
+
+    public void display(){
+        for(int i=0;i<size;i++){
+            System.out.println(arr[i]);
+        }
+    }
+    public static void main(String[] args) {
+        Main arr1 = new Main(5);
+        arr1.insert(0,341);
+        arr1.insert(1,92);
+        arr1.insert(2,14);
+        arr1.insert(3,34);
+        arr1.insert(4,349);
+        arr1.insert(5,348);
+        arr1.display();        
+    }
+}
+
+Output:
+341
+92
+14
+34
+349
+348
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
