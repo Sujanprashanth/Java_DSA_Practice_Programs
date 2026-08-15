@@ -1,1 +1,97 @@
+Array Code Implementation as ADT:
+Program:
+class Main {
+    int size;
+    int capacity;
+    int [] arr;
 
+    Main(int capacity){
+        this.capacity=capacity;
+        arr=new int[capacity];
+        size=0;
+    }
+
+    public void insert(int index,int element){
+        if(index<0||index>size||size>=capacity){
+            System.out.println("this is an invalid index");
+            return;
+        }
+        for(int i=size;i>index;i--){
+            arr[i]=arr[i-1];
+        }
+        arr[index]=element;
+        size++;
+    }
+
+    public void get(int index){
+        System.out.print(arr[index]);
+    }
+
+    public void set(int index,int element){
+        arr[index]=element;
+    }
+
+    public void search(int element){
+        for(int i=0;i<size;i++){
+            if(arr[i]==element){
+                System.out.println("index: "+i);
+                break;
+            }
+        }
+    }
+
+    public void delete(int index){
+        if(index<0||index>=size){
+            System.out.println("this is an invalid index");
+            return;
+        }
+        for(int i = index ; i<size-1;i++){
+            arr[i]=arr[i+1];
+        }
+        size--;
+    }
+
+    public void display(){
+        for(int i=0;i<size;i++){
+            System.out.println(arr[i]);
+        }
+    }
+    public static void main(String[] args) {
+        Main arr1 = new Main(5);
+        arr1.insert(0,11);
+        arr1.insert(1,12);
+        arr1.insert(2,13);
+        arr1.insert(2,33);
+
+        arr1.get(2);
+        arr1.set(2,100);
+        arr1.search(12);
+        arr1.delete(2);
+        arr1.display();        
+    }
+}
+
+Output:
+Insert:
+11
+12
+33
+13
+
+Get:
+33
+
+Set:
+11
+12
+100
+13
+
+Search:
+index: 1
+
+Delete:
+11
+12
+13
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
