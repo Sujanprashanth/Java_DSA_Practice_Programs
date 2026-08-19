@@ -245,7 +245,7 @@ class LinkedList{
     }
     void insertAtTheEnd(int data){
         if(head==null){
-            insertAtTheBegining(int data);
+            insertAtTheBegining(data);
         }
         Node temp=head;
         Node newNode1 = new Node(data);
