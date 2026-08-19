@@ -191,5 +191,38 @@ LinkedList insert at the begining:
 Program:
 class Node{
     int data;
-    Node next
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
 }
+class LinkedList{
+    void insertAtTheBegining(int data){
+        Node head = null;
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head=newNode;
+    }
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+    }
+}
+class Main{
+    public static void main(String){
+        LinkedList lk = new LinkedList();
+        lk.insertAtTheBegining(1);
+        lk.insertAtTheBegining(2);
+        lk.insertAtTheBegining(3);
+        lk.display();
+    }
+}
+
+Output:
+3->2->1->null
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
