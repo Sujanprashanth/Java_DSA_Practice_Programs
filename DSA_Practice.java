@@ -214,7 +214,7 @@ class LinkedList{
     }
 }
 class Main{
-    public static void main(String){
+    public static void main(String[]args){
         LinkedList lk = new LinkedList();
         lk.insertAtTheBegining(1);
         lk.insertAtTheBegining(2);
@@ -264,7 +264,7 @@ class LinkedList{
     }
 }
 class Main{
-    public static void main(String){
+    public static void main(String[]args){
         LinkedList lk = new LinkedList();
         lk.insertAtTheBegining(1);
         lk.insertAtTheBegining(2);
@@ -276,3 +276,70 @@ class Main{
 
 Output:
 3->2->1->4->null
+
+Linked list insert at a specific index
+Program:
+Program:
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    Node head = null;
+    void insertAtTheBegining(int data){
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head=newNode;
+    }
+    void insertAtTheEnd(int data){
+        if(head==null){
+            insertAtTheBegining(data);
+        }
+        Node temp=head;
+        Node newNode1 = new Node(data);
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode1;
+    }
+    void insertAtIndex(int index,int data){
+        if(index<0){
+            System.out.println("Invalid index");
+            return;
+        }
+        Node temp=head;
+        Node newNode2 = new Node(data);
+        for(int i =0;i<index-1;i++){
+            temp=temp.next;
+        }
+        newNode2.next=temp.next;
+        temp.next=newNode2;
+    }
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+    }
+}
+class Main{
+    public static void main(String[]args){
+        LinkedList lk = new LinkedList();
+        lk.insertAtTheBegining(1);
+        lk.insertAtTheBegining(2);
+        lk.insertAtTheBegining(3);
+        lk.insertAtTheEnd(4);
+        lk.insertAtIndex(2,45);
+        lk.display();
+    }
+}
+
+Output:
+3->2->45->1->4->null
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
