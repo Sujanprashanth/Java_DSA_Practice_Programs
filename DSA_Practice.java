@@ -198,8 +198,8 @@ class Node{
     }
 }
 class LinkedList{
+    Node head = null;
     void insertAtTheBegining(int data){
-        Node head = null;
         Node newNode = new Node(data);
         newNode.next = head;
         head=newNode;
@@ -226,3 +226,53 @@ class Main{
 Output:
 3->2->1->null
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LinkedList insert at the last
+Program:
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    Node head = null;
+    void insertAtTheBegining(int data){
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head=newNode;
+    }
+    void insertAtTheEnd(int data){
+        if(head==null){
+            insertAtTheBegining(int data);
+        }
+        Node temp=head;
+        Node newNode1 = new Node(data);
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode1;
+    }
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+    }
+}
+class Main{
+    public static void main(String){
+        LinkedList lk = new LinkedList();
+        lk.insertAtTheBegining(1);
+        lk.insertAtTheBegining(2);
+        lk.insertAtTheBegining(3);
+        lk.insertAtTheEnd(4);
+        lk.display();
+    }
+}
+
+Output:
+3->2->1->4->null
