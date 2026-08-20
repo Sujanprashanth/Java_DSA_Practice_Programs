@@ -343,3 +343,131 @@ class Main{
 Output:
 3->2->45->1->4->null
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Practice topic linked list:
+Program:
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    Node head=null;
+    void insertAtTheBegining(int data){
+        Node newNode1 = new Node(data);
+        Node temp = head;
+        newNode1.next=temp;
+        head = newNode1;
+    }
+    
+    void insertAtTheEnd(int data){
+        Node newNode2 = new Node(data);
+        if(head==null){
+            head=newNode2;
+            return;
+        }
+        Node temp = head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode2;
+    }
+    
+    void insertAtIndex(int index,int data){
+        Node newNode3 = new Node(data);
+        if(index<0){
+            System.out.println("Invalid Index");
+            return;
+        }
+        if(index==0){
+            insertAtTheBegining(data);
+            return;
+        }
+        
+        if(head==null){
+            System.out.println("Invalid Index");
+            return;
+        }
+        
+        Node temp = head;
+        for(int i=0;i<index-1;i++){
+            temp = temp.next;
+        }
+        newNode3.next=temp.next;
+        temp.next=newNode3;
+    }
+    
+    void deleteElement(int data){
+        Node temp=head;
+        if(head==null){
+            System.out.print("Invalid Deletion");
+            return;
+        }
+        
+        while(temp.next!=null && temp.next.data!=data){
+            temp=temp.next;
+        }
+        temp.next=temp.next.next;
+        
+    }
+    
+    void searchElement(int data){
+        Node temp=head;
+        boolean b = false;
+        while(temp!=null){
+            if(temp.data!=data){
+                b=false;
+                temp=temp.next;
+            }
+            else{
+                b=true;
+                System.out.println(b);
+                return;
+            }
+        }
+    }
+    
+    void countElement(){
+        int count=0;
+        Node temp=head;
+        while(temp!=null){
+            count++;
+            temp=temp.next;
+        }
+        System.out.println("no of nodes:"+count);
+    }
+    
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+    }
+}
+
+class Main{
+    public static void main(String []args){
+        LinkedList lk = new LinkedList();
+        lk.insertAtTheBegining(10);
+        lk.insertAtTheBegining(20);
+        lk.insertAtTheBegining(30);
+        lk.insertAtTheEnd(40);
+        lk.insertAtTheEnd(50);
+        lk.insertAtTheEnd(60);
+        lk.insertAtIndex(5,99);
+        lk.deleteElement(99);
+        lk.searchElement(20);
+        lk.countElement();
+        lk.display();
+    }
+}
+
+Outout:
+true
+no of nodes:6
+30->20->10->40->50->60->null
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
