@@ -471,3 +471,68 @@ true
 no of nodes:6
 30->20->10->40->50->60->null
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Reverse Linked List:
+Program:
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class ReverseLinkedList{
+    Node head = null;
+    void insertAtTheEnd(int data){
+        Node newNode1 = new Node(data);
+        if(head==null){
+            head = newNode1;
+            return;
+        }
+        Node temp = head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode1;
+    }
+
+    void reverse(){
+        Node prev=null;
+        Node current = head;
+        Node next = null;
+        while(current!=null){
+            next=current.next;
+            current.next=prev;
+            prev=current;
+            current=next;
+        }
+        head = prev;
+    }
+
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+        }
+        System.out.print("null");
+    }
+}
+class Main{
+    public static void main(String[] args){
+        ReverseLinkedList lk = new ReverseLinkedList();
+        lk.insertAtTheEnd(10);
+        lk.insertAtTheEnd(20);
+        lk.insertAtTheEnd(30);
+        lk.insertAtTheEnd(40);
+        lk.insertAtTheEnd(50);
+        lk.reverse();
+        lk.display();
+    }
+}
+
+Output:
+Before reverse: 10->20->30->40->50->null
+After reverse : 50->40->30->20->10->null
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    
