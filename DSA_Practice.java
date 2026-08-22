@@ -534,5 +534,68 @@ Output:
 Before reverse: 10->20->30->40->50->null
 After reverse : 50->40->30->20->10->null
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+DoublyLinkedList:
+Program:
+class Node{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class DoublyLinkedList{
+    Node head = null;
+    void insertAtTheBegining(int data){
+        Node newNode1 = new Node(data);
+        newNode1.next=head;
+        if(head!=null){
+            head.prev=newNode1;
+        }
+        head=newNode1;
+    }
     
+    void insertAtTheEnd(int data){
+        Node newNode2 = new Node(data);
+        if(head==null){
+            head=newNode2;
+            return;
+        }
+        Node temp=head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode2;
+        newNode2.prev=temp;
+    }
+    
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"<->");
+            temp=temp.next;
+        }
+        System.out.print("null");
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+	    DoublyLinkedList dl = new DoublyLinkedList();
+	    dl.insertAtTheBegining(10);
+	    dl.insertAtTheBegining(20);
+	    dl.insertAtTheBegining(30);
+	    dl.insertAtTheBegining(40);
+	    dl.insertAtTheBegining(50);
+	    dl.insertAtTheEnd(60);
+	    dl.insertAtTheEnd(70);
+	    dl.insertAtTheEnd(80);
+	    dl.display();
+	}
+}
+
+Output:
+50<->40<->30<->20<->10<->60<->70<->80<->null
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------    
