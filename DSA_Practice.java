@@ -599,3 +599,242 @@ public class Main
 Output:
 50<->40<->30<->20<->10<->60<->70<->80<->null
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+LinkedList insertAtEnd,insertAtBegining,insertAtIndex,deleteByData,DeleteByIndex,reverse
+program:
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList{
+    Node head=null;
+    void insertAtTheBegining(int data){
+        Node newNode1 = new Node(data);
+        if(head==null){
+            head=newNode1;
+            return;
+        }
+        newNode1.next=head;
+        head=newNode1;
+    }
+    
+    void insertAtTheEnd(int data){
+        Node temp=head;
+        Node newNode2 = new Node(data);
+        if(head==null){
+            head=newNode2;
+            return;
+        }
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode2;
+    }
+    
+    void insertAtIndex(int index,int data){
+        int count=0;
+        if(index<0){
+            System.out.print("Invalid index");
+            return;
+        }
+        Node newNode3 = new Node(data);
+        Node temp = head;
+        Node temp1 = head;
+        while(temp1!=null){
+            count++;
+            temp1=temp1.next;
+        }
+        if(head == null && index>0){
+            System.out.print("Invalid index for an empty list");
+            return;
+        }
+        if(index==0 || head == null){
+            insertAtTheBegining(data);
+            return;
+        }
+        
+        if(index<=count){
+            for(int i=0;i<index-1;i++){
+                temp=temp.next;
+            }
+            newNode3.next=temp.next;
+            temp.next=newNode3;
+        }
+        else{
+            System.out.println("invalid index size");
+            return;
+        }
+    }
+    
+    void deleteByData(int data){
+        Node temp = head;
+        if(head==null){
+            System.out.println("No Data is present in this linkedlist");
+            return;
+        }
+        if(head.data==data){
+            head=head.next;
+            return;
+        }
+        while(temp.next!=null && temp.next.data!=data){
+            temp=temp.next;
+        }
+        if(temp.next==null){
+            System.out.println("No such data is present");
+            return;
+        }
+        else{
+            temp.next=temp.next.next;
+        }
+    }
+    
+    void deleteByIndex(int index){
+        if(head==null){
+            System.out.println("No Data is present in this linkedlist");
+            return;
+        }
+        if(index<0){
+            System.out.println("invalid index");
+            return;
+        }
+        if(index==0){
+            head=head.next;
+            return;
+        }
+        Node temp = head;
+        Node temp2 = head;
+        int count2=0;
+        while(temp2!=null){
+            count2++;
+            temp2=temp2.next;
+        }
+        if(index<count2){
+            for(int i=0;i<index-1;i++){
+                temp=temp.next;
+            }
+            temp.next=temp.next.next;
+        }
+        else{
+            System.out.println("Index size for deletion is bigger");
+            return;
+        }
+    }
+    
+    void reverse(){
+        Node current = head;
+        Node next = null;
+        Node prev = null;
+        while(current!=null){
+            next=current.next;
+            current.next=prev;
+            prev=current;
+            current=next;
+        }
+        head=prev;
+    }
+    
+    void display(){
+        Node temp=head;
+        System.out.print("LinkedList:--->");
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+}
+class Main{
+    public static void main(String[]args){
+        LinkedList lk = new LinkedList();
+        lk.insertAtTheBegining(10);
+        lk.insertAtTheBegining(20);
+        lk.insertAtTheBegining(30);
+        lk.insertAtTheBegining(40);
+        lk.insertAtTheBegining(50);
+        lk.insertAtTheEnd(60);
+        lk.insertAtTheEnd(70);
+        lk.insertAtTheEnd(80);
+        lk.insertAtTheEnd(90);
+        lk.insertAtIndex(0,100);
+        lk.deleteByData(100);
+        lk.deleteByIndex(1);
+        lk.reverse();
+        lk.display();
+    }
+}
+
+Output:
+1. insertAtTheBegining()
+   lk.insertAtTheBegining(100);
+   lk.display();
+Output:
+LinkedList:--->100->50->40->30->20->10->60->70->80->90->null
+Logic: New node becomes head.
+
+2. insertAtTheEnd()
+   lk.insertAtTheEnd(100);
+   lk.display();
+Output:
+LinkedList:--->50->40->30->20->10->60->70->80->90->100->null
+Logic: New node is attached after the last node.
+
+3. insertAtIndex()
+Example:
+lk.insertAtIndex(2, 100);
+lk.display();
+Before:
+Index:  0   1   2   3   4   5   6   7   8
+        ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓
+        50  40  30  20  10  60  70  80  90
+
+Output:
+LinkedList:--->50->40->100->30->20->10->60->70->80->90->null
+
+4. deleteByData()
+   Example:
+   lk.deleteByData(30);
+   lk.display();
+
+Before:
+50 -> 40 -> 30 -> 20 -> 10 -> 60 -> 70 -> 80 -> 90
+
+Output:
+LinkedList:--->50->40->20->10->60->70->80->90->null
+Logic: Find the node before 30, then skip 30.
+40 -> 30 -> 20
+40 ─────→ 20
+	
+5. deleteByIndex()
+   Example:
+   lk.deleteByIndex(2);
+   lk.display();
+
+Index:
+Index:  0   1   2   3   4   5   6   7   8
+        ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓   ↓
+        50  40  30  20  10  60  70  80  90
+Index 2 = 30.
+
+Output:
+LinkedList:--->50->40->20->10->60->70->80->90->null
+	
+6. reverse()
+   Your current code:
+   lk.reverse();
+   lk.display();
+
+Starting list:
+50 -> 40 -> 30 -> 20 -> 10 -> 60 -> 70 -> 80 -> 90 -> null
+
+Output:
+LinkedList:--->90->80->70->60->10->20->30->40->50->null
+🧠 Reverse logic
+Before:
+50 → 40 → 30 → 20 → 10 → 60 → 70 → 80 → 90 → null
+	
+After:
+90 → 80 → 70 → 60 → 10 → 20 → 30 → 40 → 50 → null
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
