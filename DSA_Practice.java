@@ -838,3 +838,102 @@ Before:
 After:
 90 → 80 → 70 → 60 → 10 → 20 → 30 → 40 → 50 → null
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+circular linked list insertAtBegin, insertAtEnd, deleteAtBegin, deleteAtEnd
+Program:
+class CircularLinkedList<T>{
+	class Node{
+		T data;
+		Node next;
+		Node(T data){
+			this.data=data;
+			this.next=next;
+		}
+	}
+	Node tail;
+	CircularLinkedList(){
+		tail=null;
+	}
+	void insertAtBegin(T data){
+		Node newNode1 = new Node(data);
+		if(tail==null){
+			newNode1.next=newNode1;
+			tail=newNode1;
+		}
+		else{
+			newNode1.next=tail.next;
+			tail.next=newNode1;
+		}
+	}
+
+	void insertAtEnd(T data){
+		Node newNode2 = new Node(data);
+		if(tail==null){
+			newNode2.next=newNode2;
+			tail=newNode2;
+		}
+		else{
+			newNode2.next=tail.next;
+			tail.next=newNode2;
+			tail=newNode1;
+		}
+	}
+
+	void deleteAtBegin(){
+		if(tail==null){
+			System.out.print("Empty List");
+			return;
+		}
+		if(tail.next!=tail){
+			tail=null;
+			return;
+		}
+		else{
+			tail.next=tail.next.next;
+		}
+	}
+
+	void deleteAtEnd(){
+		if(tail==null){
+			System.out.print("Empty List");
+			return;
+		}
+		if(tail.next!=tail){
+			tail=null;
+			return;
+		}
+		else{
+			Node temp=tail;
+			while(temp.next!=tail){
+				temp=temp.next;
+			}
+			temp.next=tail.next;
+			tail=temp;
+		}
+	}
+
+	void display(){
+		Node temp=tail;
+		do{
+			System.out.print(temp.data+"->");
+			temp=temp.next;
+		}while(temp!=tail);
+	}
+}
+class Main{
+	public static void main(String[]args){
+		CircularLinkedList<String> lk = new CircularLinkedList<>();
+		lk.insertAtBegin(10);
+		lk.insertAtBegin(20);
+		lk.insertAtBegin(30);
+		lk.insertAtEnd(40);
+		lk.insertAtEnd(50);
+		lk.insertAtEnd(60);
+		lk.deleteAtBegin();
+		lk.deleteAtEnd();
+		lk.display();
+	}
+}
+
+Output:
+50->20->10->40->
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
